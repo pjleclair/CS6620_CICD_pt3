@@ -6,7 +6,8 @@
 
 ### I included a small test to ensure that data is returned, which is ran as part of the GitHub pipeline.
 
-### To install:
+### To install, clone the repo and create a conda environment:
+`git clone git@github.com:pjleclair/CS6620_CICD_pt1.git`
 
 `conda env create -f environment.yml`
 
