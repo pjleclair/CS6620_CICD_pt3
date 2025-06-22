@@ -8,15 +8,15 @@ jobs:
       - name: Build Docker images
         run: |
           docker compose build
-      - name: Start services
+      - name: Start app service
         run: |
-          docker compose up -d
+          docker compose up -d app
       - name: Wait for app to be ready
         run: |
           timeout 60 bash -c 'until curl -f http://localhost:8000 2>/dev/null; do sleep 2; done'
       - name: Run tests
         run: |
-          docker compose exec test pytest test_app.py -v
+          docker compose run --rm test pytest test_app.py -v
       - name: Cleanup
         run: |
           docker compose down
