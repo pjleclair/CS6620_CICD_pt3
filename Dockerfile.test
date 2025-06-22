@@ -1,0 +1,10 @@
+FROM continuumio/miniconda3
+
+WORKDIR /app
+
+COPY environment.yml .
+RUN conda env create -f environment.yml
+
+COPY test_app.py ./
+
+CMD ["conda", "run", "--no-capture-output", "-n", "CICD_pt2", "pytest", "test_app.py", "-v"]

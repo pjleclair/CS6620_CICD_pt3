@@ -6,4 +6,3 @@ dependencies:
   - conda-forge::ujson
   - conda-forge::pytest
   - conda-forge::fastapi
-prefix: /Users/philrater8/miniforge3/envs/CICD_pt2
