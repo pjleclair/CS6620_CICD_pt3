@@ -1,9 +1,7 @@
 import requests
 import os
 
-BASE_URL = os.getenv("BASE_URL", "http://app:8000")
-if BASE_URL is None:
-    BASE_URL = "http://localhost:8000"
+BASE_URL = os.getenv("BASE_URL", "http://localhost:8000")
 
 
 def test_get():
