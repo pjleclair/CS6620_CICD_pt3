@@ -21,13 +21,16 @@ async def post(coin_id: str):
 
 
 async def put(coin_id: str):
-    # This is a fake endpoint, we're just going to return an object
+    # This is a fake endpoint, we're just going to return a string
+    # Note that FastAPI will throw a 404 with empty id string, this is a backup
     if coin_id == "":
         raise HTTPException(HTTP_400_BAD_REQUEST)
     return f"{coin_id} created!"
 
 
 async def delete(coin_id: str):
+    # This is a fake endpoint, we're just going to return a string
+    # Note that FastAPI will throw a 404 with empty id string, this is a backup
     if coin_id == "":
         raise HTTPException(HTTP_400_BAD_REQUEST)
     return f"{coin_id} deleted!"
