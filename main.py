@@ -22,10 +22,10 @@ async def get_coin(coin_id: str):
         raise HTTPException(status.HTTP_400_BAD_REQUEST)
 
 
-@app.put("/coins/{coin_id}", status_code=status.HTTP_200_OK)
-async def put_coin(coin_id: str):
+@app.put("/coins/{coin_id}/{text}", status_code=status.HTTP_200_OK)
+async def put_coin(coin_id: str, text: str):
     try:
-        response = await request_service.put(coin_id)
+        response = await request_service.put(coin_id, text)
         return {"data": response}
     except Exception:
         raise HTTPException(status.HTTP_400_BAD_REQUEST)

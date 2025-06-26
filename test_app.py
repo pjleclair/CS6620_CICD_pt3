@@ -17,7 +17,7 @@ def test_post():
 
 
 def test_put():
-    res = requests.put(f"{BASE_URL}/coins/FAKECOIN")
+    res = requests.put(f"{BASE_URL}/coins/FAKECOIN/realCoin")
     assert res.status_code == 200
     bad_res = requests.put(f"{BASE_URL}/coins/")
     assert bad_res.status_code == 404
