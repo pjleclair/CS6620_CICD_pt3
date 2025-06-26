@@ -10,7 +10,7 @@ async def read_root():
         response = await request_service.get()
         return {"data": response}
     except Exception:
-        raise HTTPException(status.HTTP_400_BAD_REQUEST)
+        raise HTTPException(status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
 @app.post("/coins/{coin_id}", status_code=status.HTTP_200_OK)
@@ -19,7 +19,7 @@ async def get_coin(coin_id: str):
         response = await request_service.post(coin_id)
         return {"data": response}
     except Exception:
-        raise HTTPException(status.HTTP_400_BAD_REQUEST)
+        raise HTTPException(status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
 @app.put("/coins/{coin_id}/{text}", status_code=status.HTTP_200_OK)

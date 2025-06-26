@@ -1,6 +1,5 @@
-from fastapi import HTTPException
+from fastapi import HTTPException, status
 import requests
-from starlette.status import HTTP_400_BAD_REQUEST
 import ujson
 
 BASE_URL = "https://api.coingecko.com/api/v3/coins"
@@ -27,7 +26,7 @@ async def put(coin_id: str, text: str):
     # This is a fake endpoint, we're just going to return a string
     # Note that FastAPI will throw a 404 with empty id string, this is a backup
     if coin_id == "":
-        raise HTTPException(HTTP_400_BAD_REQUEST)
+        raise HTTPException(status.HTTP_400_BAD_REQUEST)
     db[coin_id] = text
     return f"{coin_id} updated!"
 
@@ -36,7 +35,7 @@ async def delete(coin_id: str):
     # This is a fake endpoint, we're just going to return a string
     # Note that FastAPI will throw a 404 with empty id string, this is a backup
     if coin_id == "":
-        raise HTTPException(HTTP_400_BAD_REQUEST)
+        raise HTTPException(status.HTTP_400_BAD_REQUEST)
     del db[coin_id]
     return f"{coin_id} deleted!"
 

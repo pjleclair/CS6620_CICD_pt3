@@ -13,7 +13,7 @@ def test_post():
     res = requests.post(f"{BASE_URL}/coins/bitcoin")
     assert res.status_code == 200
     bad_res = requests.post(f"{BASE_URL}/coins/FAKECOIN")
-    assert bad_res.status_code == 400
+    assert bad_res.status_code == 500
 
 
 def test_put():
