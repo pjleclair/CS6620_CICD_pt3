@@ -13,10 +13,10 @@ jobs:
           docker compose up -d app
       - name: Wait for app to be ready
         run: |
-          timeout 60 bash -c 'until curl -f http://localhost:8000 2>/dev/null; do sleep 2; done'
+          timeout 60 bash -c 'until curl -f http://localhost:8000/items 2>/dev/null; do sleep 2; done'
       - name: Run tests
         run: |
-          docker compose run test
+          ./run_tests.sh
       - name: Cleanup
         run: |
           docker compose down
