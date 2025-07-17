@@ -1,15 +1,16 @@
-# CS6620_CICD_pt2
+# CS6620_CICD_pt3
 
-### This Python app is a FastAPI application that provides REST endpoints for cryptocurrency data from the CoinGecko API.
+### This Python app is a FastAPI application that provides REST endpoints for item management with DynamoDB and S3 storage.
 
 ### Features:
 
-- **GET /**: Returns a list of all available cryptocurrencies
-- **POST /coins/{coin_id}**: Get detailed information for a specific cryptocurrency
-- **PUT /coins/{coin_id}**: Mock endpoint that returns a creation confirmation
-- **DELETE /coins/{coin_id}**: Mock endpoint that returns a deletion confirmation
+- **GET /items**: Returns a list of all items
+- **GET /items/{item_id}**: Get detailed information for a specific item
+- **POST /items**: Create a new item (stores in DynamoDB and S3)
+- **PUT /items/{item_id}**: Update an existing item
+- **DELETE /items/{item_id}**: Delete an item from both DynamoDB and S3
 
-### The app includes comprehensive tests and is fully containerized with Docker.
+### The app includes comprehensive tests and is fully containerized with Docker, using LocalStack for AWS service mocking.
 
 ## Local Development Setup
 
@@ -24,15 +25,15 @@
 1. Clone the repository:
 
    ```bash
-   git clone git@github.com:pjleclair/CS6620_CICD_pt2.git
-   cd CS6620_CICD_pt2
+   git clone git@github.com:pjleclair/CS6620_CICD_pt3.git
+   cd CS6620_CICD_pt3
    ```
 
 2. Create and activate the conda environment:
 
    ```bash
    conda env create -f environment.yml
-   conda activate CICD_pt2
+   conda activate CICD_pt3
    ```
 
 3. Run the application locally:
@@ -60,12 +61,12 @@ The app will be available at `http://localhost:8000`
 1. Build and start the application:
 
    ```bash
-   docker-compose up --build
+   ./run_api.sh
    ```
 
 2. Run tests in Docker:
    ```bash
-   docker-compose run test
+   ./run_tests.sh
    ```
 
 The containerized app will be available at `http://localhost:8000`
