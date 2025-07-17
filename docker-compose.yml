@@ -1,16 +1,53 @@
 services:
+  localstack:
+    image: localstack/localstack:latest
+    ports:
+      - "4566:4566"
+    environment:
+      - SERVICES=dynamodb,s3
+      - DEBUG=1
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:4566/_localstack/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 10
+      start_period: 10s
+
   app:
     build:
       context: .
       dockerfile: Dockerfile.app
     ports:
       - "8000:8000"
+    environment:
+      - LOCALSTACK_ENDPOINT=http://localstack:4566
+    depends_on:
+      localstack:
+        condition: service_healthy
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "conda",
+          "run",
+          "--no-capture-output",
+          "-n",
+          "CICD_pt2",
+          "python",
+          "-c",
+          "import requests; requests.get('http://localhost:8000/items')",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
 
   test:
     build:
       context: .
       dockerfile: Dockerfile.test
     depends_on:
-      - app
+      app:
+        condition: service_healthy
     environment:
       - BASE_URL=http://app:8000

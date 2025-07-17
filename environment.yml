@@ -6,3 +6,4 @@ dependencies:
   - conda-forge::ujson
   - conda-forge::pytest
   - conda-forge::fastapi
+  - conda-forge::boto3
