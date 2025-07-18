@@ -74,3 +74,7 @@ The containerized app will be available at `http://localhost:8000`
 ## Testing
 
 Tests verify all endpoints return appropriate status codes and handle both valid and invalid requests. The test suite runs automatically as part of the CI/CD pipeline.
+
+## Disclaimer
+
+Used Claude for assistance implementing AWS services integration (DynamoDB, S3) with LocalStack
